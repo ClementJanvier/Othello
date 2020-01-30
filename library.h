@@ -18,7 +18,7 @@ typedef struct pion {
   int PosY; // position en Y du pion
 };
 
-void initialiser_othellier(int othellier[N]); //Initialise l'othellier à 0;
+void initialiser_othellier(int othellier[N][M]); //Initialise le plateau de jeu à 0;
 void config_othellier(int othellier[N]); // Mets en place la configuration de départ de l'initialiser_othellier
 void afficher_otthelier(int othellier[N]);
 
