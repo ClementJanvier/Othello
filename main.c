@@ -1,4 +1,4 @@
-include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 /**
@@ -9,44 +9,37 @@ include <stdio.h>
 */
 int main(){
   
-int rep;
+  int rep;
   
-do{
-		affichage_menu();
+  do{
+		  affichage_menu();
 		
-	// Lecture et verification du choix de l'utilisateur 
-		do{	
-			printf("Votre choix [1-3] ? ");
-			scanf("%d",&rep);
-			if (rep < 1 || rep > 3) 
-				printf("Votre choix doit etre compris entre 1 et 3\n");
-		}
-		while (rep < 1 || rep > 3);
+	  // Lecture et verification du choix de l'utilisateur 
+		  do{	
+			  printf("Votre choix [1-3] ? ");
+			  scanf("%d",&rep);
+			  if (rep < 1 || rep > 3) 
+				  printf("Votre choix doit etre compris entre 1 et 3\n");
+		  }
+		  while (rep < 1 || rep > 3);
 		
 		
-		// Traitement du choix de l'utilisateur
-		switch (rep){
-			case 1: {
-        printf("Le jeu va démarrer");
-        
-        
-        
-        
-        
-        
-        
-        
-        break;
-      }
-			case 2: 
-			case 3 : {
-				printf("Merci d'avoir joué à notre jeu !\n"); 
+		  // Traitement du choix de l'utilisateur
+		  switch (rep){
+			  case 1: {
+          printf("Le jeu va démarrer");
+          //Execution de la fonction jeu qui prend en charge le déroulement du jeu (choix utilisateurs,mise en place et affichage du plateau,etc...)
+          break;
+        }
+			  case 2: //LE joueur choisit de jouer contre l'ordinateur, il choisit ensuite sa difficulté et affronte l'ordinateur. 
+			  case 3 : {
+				printf("Merci d'avoir joué à notre jeu !\n"); //Le joueur décide de quitter le jeu
 				break;
 			}
 		}
 
-		if(debog)
-			afficher_table();
+		//if(debog)
+		//	afficher_table();
 	}
 	while (rep != 3);
 
