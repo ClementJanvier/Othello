@@ -42,9 +42,9 @@ PosY
 
 Fonction jeu contre ‘bot’( 2nde Partie)
 
-Bonsoir Paris !
+
 
 
 FONCTIONS :
 
-        ERJZEORJZE
+       
