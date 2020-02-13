@@ -10,20 +10,20 @@
 
 #define N 8
 
-typedef struct joueur {
+typedef struct joueur_s{
   char * pseudo;
   int couleur_j; // 1 = noir, 2 = blanc
   int nb_pions; // nombre de pions de sa couleur sur l'othellier
   int nb_tour; // nombre de tour que le joueur a joué depuis le début de la partie
-  int plus_gros_coup; //coup prenant le plus de pions adverses 
-  int palmares [3]={0,0,0}; //victoire,nuls,défaites
-};
+  int plus_gros_coup; //coup prenant le plus de pions adverses
+  int palmares[3]; //victoire,nuls,défaites
+}joueur;
 
-typedef struct pion {
+typedef struct pion_s{
   int couleur_p;
   int PosX; //position en X du pion
-  int PosY; // position en Y du pion
-};
+  int PosY; //position en Y du pion
+}pion;
 
 /*Fonctions relatives à la matrice */
 void initialiser_othellier(int othellier[N][N]); //Initialise le plateau de jeu à 0; FAIT
@@ -37,7 +37,7 @@ void choix_cote(); // Choix de la couleur utilisée par les joueurs //FAIT
 
 /*Menu Démarrage */
 void affichage_menu();//Affiche le menu de jeu; FAIT
-void affichage_difficulté();//Affiche les difficultés possibles; FAIT
+void affichage_difficulte();//Affiche les difficultés possibles; FAIT
 
 
 /*Tour*/
