@@ -287,7 +287,7 @@ int choix_coup(int othellier[N][N],pion pion_1){ //Choix du coup effectué par l
 
 int MAJ_othellier(int othellier[N][N],pion pion_1,joueur X){
     othellier[pion_1.PosX][pion_1.PosY]=X.couleur_j;
-    retourne(int othellier[N][N],joueur X);
+    retourne(othellier[N][N],joueur X);
 }
 
   
