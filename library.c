@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "library.h"
 #include "pile.h"
 
@@ -29,37 +30,40 @@ int dans_matrice(int x, int y){
     return 0;
 }
 
-void choix_pseudo(){ //Choix du pseudo dans le cas du JcJ
+void choix_pseudo(joueur* A,joueur* B){ //Choix du pseudo dans le cas du JcJ
 
-  joueur A;
-  joueur B;
+  char strA[30];
+  char strB[30];
 
   printf(" Entrez un pseudo pour le joueur A : ");
-  scanf("%s \n",A.pseudo);
+  scanf("%s",strA);
+  A->pseudo=malloc(sizeof(strlen(strA)+1));
+  strcpy(A->pseudo,strA);
+
 
   printf(" Entrez un pseudo pour le joueur B : ");
-  scanf("%s \n",B.pseudo);
+  scanf("%s",strB);
+  B->pseudo=malloc(sizeof(strlen(strB)+1));
+  strcpy(B->pseudo,strB);
+
+
 }
 
-void choix_cote(){
-  joueur A;
-  joueur B;
-
-  char *couleur;
+void choix_cote(joueur *A,joueur* B){
+  int rep;
   do{
-    printf(" %s entrez la couleur que vous jouerez (noir ou blanc): ",A.pseudo);
-    scanf("%s \n",couleur);
-  }while((*couleur)!='noir'&&(*couleur)!='blanc');
+    printf("%s, Pour jouer la couleur Noir rentrez 1 ou 2 pour la couleur blanche :",A->pseudo);
+    scanf("%d",&rep);
+  } while( (rep!=1 && rep!=2 ) );
 
-  if(*couleur == 'noir'){
-    A.couleur_j=2; //Le joueur A a la couleur noire
-    B.couleur_j=1; // Le joueur B a la couleur blanche
+  if( rep == 1){
+    A->couleur_j=2; //Le joueur A a la couleur noire
+    B->couleur_j=1; // Le joueur B a la couleur blanche
   }
   else{
-    A.couleur_j=1; // Inverse de ci-dessus
-    B.couleur_j=2;
+    A->couleur_j=1; // Inverse de ci-dessus
+    B->couleur_j=2;
   }
-
 }
 
 void initialiser_othellier(int othellier[N][N]){  //Initialise le plateau de jeu à 0;
@@ -67,7 +71,7 @@ int i,j;
 
 	for(i=0; i<N; i++){
 		for(j=0; j<N; j++){
-			othellier[i][j] = '0'; // Initialiser la case à 0
+			othellier[i][j] = 0; // Initialiser la case à 0
 		}
 	}
 }
@@ -93,18 +97,18 @@ void afficher_otthelier(int othellier[N][N]){
   for(i =0 ; i<N ; i++){
     for(j=0 ; j<N ; j++){
       if(othellier[i][j]==0){          //si la case est vide (case=0) on l'affiche par un espace
-        printf(" ");
+        printf("* ");
       }else if(othellier[i][j]==1){    // si la case contient un pion blanc (case=1) on affiche la lettre B pour illustrer
-        printf("B");
-      }else{                         //Même principe avec un pion noir
-        printf("N");
+        printf("B ");
+      }else if(othellier[i][j]==2){    //Même principe avec un pion noir
+        printf("N ");
       }
     }
     printf("\n");          // A la fin de la ligne on saute une ligne pour rendre l'affichage pertinent
   }
 }
 
-void affichage_coup(int othellier[N][N], joueur X){
+void affichage_coup(int othellier[N][N], joueur* X){
 
   int nb_coup = 0;
   int i, j;
@@ -112,16 +116,17 @@ void affichage_coup(int othellier[N][N], joueur X){
   int xx, yy;
   int z;
 
+
   int pion_coul;
   int nb_choix=1;
 
   int c_pion, c_pion_adv; //couleur pion et couleur pion adverse
 
-  if(X.couleur_j==2){  //joueur avec pion noir
+  if(X->couleur_j==2){  //joueur avec pion noir
     c_pion=1;
     c_pion_adv=2;
   }
-  else if(X.couleur_j==1){  //joueur avec pion blanc
+  else if(X->couleur_j==1){  //joueur avec pion blanc
     c_pion=2;
     c_pion_adv=1;
   }
@@ -130,13 +135,13 @@ void affichage_coup(int othellier[N][N], joueur X){
 
   if(!pilevide()){
     while(!pilevide()){
-      depiler();
+      depiler(&x);
     }
   }
   else{
 
     //8 directions différentes à observer
-    if(X.couleur_j=='noir'){
+    if(X->couleur_j==1){
       pion_coul=2;
     }else{
       pion_coul=1;
@@ -186,7 +191,7 @@ void affichage_coup(int othellier[N][N], joueur X){
 
         else if(othellier[x--][y]==c_pion_adv){ //bas
           xx=x-1;
-          while(othellier[xx][y]=c_pion_adv){
+          while(othellier[xx][y]==c_pion_adv){
             xx--;
           }
           if(othellier[xx][yy]==0){
@@ -265,39 +270,35 @@ void affichage_coup(int othellier[N][N], joueur X){
 }
 
 
-int choix_coup(int othellier[N][N],pion pion_1){ //Choix du coup effectué par le joueur
-
-  do{
-    prinf("Donnez les coordonnées du pion choisi");
-    scanf("%d %d",pion_1->PosX, pion_1->PosY);
-  }
-  while(othellier[pion_1->PosX][pion_1->PosY]!=0&&dans_matrice(pion_1.PosX, pion_1.PosY));
-
+void choix_coup(int othellier[N][N],pion* pion_1){ //Choix du coup effectué par le joueur
+    printf("Donnez les coordonnées du pion choisi \n");
+    printf("X = ");
+    scanf("%d",&pion_1->PosX);
+    printf("Y = ");
+    scanf("%d",&pion_1->PosY);
+    printf("sorti");
   //Compléter la fonction avec SDL pour le choix avec un click de la souris (Plus tard)
-}
+  }
 
-int MAJ_othellier(int othellier[N][N],pion pion_1,joueur X){
-    othellier[pion_1.PosX][pion_1.PosY]=X.couleur_j;
-    retourne(othellier[N][N], pion_1); // rajoute joueur X
-}
+
 
 
 // Cette fonction parcours les pions et grâce a la pos du dernier pion posé,
 // elle met à jour la matrice en retournant les pions si nécéssaires.
-void retourne(int othellier[N][N],joueur X, pion pion_1){
-  int x=pion_1.PosX;  //coordonnée X du dernier pion placé
-  int y=pion_1.PosY;  //coordonnée Y du dernier pion placé
+void retourne(int othellier[N][N],joueur* X, pion *pion_1){
+  int x=pion_1->PosX;  //coordonnée X du dernier pion placé
+  int y=pion_1->PosY;  //coordonnée Y du dernier pion placé
   int i=x;
   int j=y;
 
   int c_pion, c_pion_adv; //couleur pion et couleur pion adverse
 
 
-  if(X.couleur_j==1){  //joueur avec pion noir
+  if(X->couleur_j==1){  //joueur avec pion noir
     c_pion=1;
     c_pion_adv=2;
   }
-  else if(X.couleur_j==2){  //joueur avec pion blanc
+  else if(X->couleur_j==2){  //joueur avec pion blanc
     c_pion=2;
     c_pion_adv=1;
   }
@@ -460,4 +461,8 @@ void retourne(int othellier[N][N],joueur X, pion pion_1){
     }
   }
 
+}
+void MAJ_othellier(int othellier[N][N], pion *pion_1,joueur* X){
+    othellier[pion_1->PosX][pion_1->PosY]=X->couleur_j;
+    retourne(othellier,X, pion_1); // rajoute joueur X
 }

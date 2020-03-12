@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "library.h"
 
 /**
 *\file main.c
@@ -8,35 +9,32 @@
 *\date 03/02/2020
 */
 int main(){
-  
+
   int rep;
-  
+
+
   do{
 		  affichage_menu();
-		
-	  // Lecture et verification du choix de l'utilisateur 
-		  do{	
+
+	  // Lecture et verification du choix de l'utilisateur
+		  do{
 			  printf("Votre choix [1-3] ? ");
 			  scanf("%d",&rep);
-			  if (rep < 1 || rep > 3) 
+			  if (rep < 1 || rep > 3){
 				  printf("Votre choix doit etre compris entre 1 et 3\n");
-		  }
-		  while (rep < 1 || rep > 3);
-		
-		
+        }
+		  }while (rep < 1 || rep > 3);
+
+
 		  // Traitement du choix de l'utilisateur
 		  switch (rep){
-			  case 1: {
-          printf("Le jeu va démarrer");
-          //Execution de la fonction jeu qui prend en charge le déroulement du jeu (choix utilisateurs,mise en place et affichage du plateau,etc...)
-          break;
-        }
-			  case 2: //LE joueur choisit de jouer contre l'ordinateur, il choisit ensuite sa difficulté et affronte l'ordinateur. 
-			  case 3 : {
-				printf("Merci d'avoir joué à notre jeu !\n"); //Le joueur décide de quitter le jeu
-				break;
+			  case 1: printf("Le jeu va démarrer \n");jeu(); break;
+
+			  case 2: //LE joueur choisit de jouer contre l'ordinateur, il choisit ensuite sa difficulté et affronte l'ordinateur.
+			  case 3 : printf("Merci d'avoir joué à notre jeu !\n"); //Le joueur décide de quitter le jeu
+			  break;
 			}
-		}
+
 
 		//if(debog)
 		//	afficher_table();
@@ -44,4 +42,5 @@ int main(){
 	while (rep != 3);
 
 	return EXIT_SUCCESS;
+
 }
