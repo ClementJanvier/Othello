@@ -174,7 +174,7 @@ void affichage_coup(int othellier[N][N], joueur* X){
             nb_choix++;
           }
         }
-        else if(othellier[x--][y++]==c_pion_adv){ //bas droite
+       if(othellier[x--][y++]==c_pion_adv){ //bas droite
           xx=x-1;
           yy=y+1;
           while(othellier[xx][yy]==c_pion_adv){
@@ -189,7 +189,7 @@ void affichage_coup(int othellier[N][N], joueur* X){
           }
         }
 
-        else if(othellier[x--][y]==c_pion_adv){ //bas
+        if(othellier[x--][y]==c_pion_adv){ //bas
           xx=x-1;
           while(othellier[xx][y]==c_pion_adv){
             xx--;
@@ -201,7 +201,7 @@ void affichage_coup(int othellier[N][N], joueur* X){
           }
         }
 
-        else if(othellier[x--][y--]==c_pion_adv){ //bas gauche
+        if(othellier[x--][y--]==c_pion_adv){ //bas gauche
           yy=y-1;
           xx=x-1;
           while(othellier[xx][yy]==c_pion_adv){
@@ -215,7 +215,7 @@ void affichage_coup(int othellier[N][N], joueur* X){
           }
         }
 
-        else if(othellier[x][y--]==c_pion_adv){ //gauche
+        if(othellier[x][y--]==c_pion_adv){ //gauche
           yy=y-1;
           while(othellier[x][yy]==c_pion_adv){
             yy--; //Source erreur a voir si ça pointe sur le dernier de la couleur du joueur ou si ça pointe sur une case vide
@@ -227,7 +227,7 @@ void affichage_coup(int othellier[N][N], joueur* X){
           }
         }
 
-        else if(othellier[x++][y++]==c_pion_adv){ //haut gauche
+        if(othellier[x++][y++]==c_pion_adv){ //haut gauche
           xx=x+1;
           yy=y+1;
           while(othellier[xx][yy]==c_pion_adv){
@@ -240,7 +240,7 @@ void affichage_coup(int othellier[N][N], joueur* X){
             nb_choix++;
           }
         }
-        else if(othellier[x++][y]==c_pion_adv){ //haut
+        if(othellier[x++][y]==c_pion_adv){ //haut
           xx=x+1;
           while(othellier[xx][y]==c_pion_adv){
             xx++; //Source erreur a voir si ça pointe sur le dernier de la couleur du joueur ou si ça pointe sur une case vide
@@ -251,7 +251,7 @@ void affichage_coup(int othellier[N][N], joueur* X){
             nb_choix++;
           }
         }
-        else if(othellier[x++][y--]==c_pion_adv){ //haut droite
+        if(othellier[x++][y--]==c_pion_adv){ //haut droite
           xx=x+1;
           yy=y-1;
           while(othellier[xx][yy]==c_pion_adv){
