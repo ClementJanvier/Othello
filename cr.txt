@@ -1,11 +1,11 @@
 Compte Rendu Séance 19/03 Projet
 
-En ce qui concerne le projet Othello, nous avons presque fini la version 1.0 qui consiste concrètement en un jeu jouable sur terminal, le fait que la v1.0 ne soit pas encore finie est dût au fait qu'il y ait des problèmes rémanents sur certaines fonctions empechant la compilation et l'execution de l'entiereté du programme. Cependant 80% du programme est fonctionnel et prêt à l'emploi (le détail des fonctions fonctionnant ou non sont disponibles sur l'organigramme du github. 
+En ce qui concerne le projet Othello, nous avons presque fini la version 1.0 qui consiste concrètement en un jeu jouable sur terminal, le fait que la v1.0 ne soit pas encore finie est dût au fait qu'il y ait des problèmes rémanents sur certaines fonctions empechant la compilation et l'execution de l'entiereté du programme. Cependant 80% du programme est fonctionnel et prêt à l'emploi (le détail des fonctions fonctionnant ou non sont disponibles sur l'organigramme de github. 
 
 Plus précisément, une fois ces quelques soucis régglés le jeu sera jouable en joueur contre joueur en local (sur une même machine), l’affichage et les interactions se déroulant sur un terminal : l’affichage de l’othellier se fait par l’affichage de la matrice et le choix de jeu des différents joueurs se fait par la sélection des coordonnées du pions à bouger.
 
 En ce qui concerne les taches en cours, le développement de la partie réseau gérée par Achraf est en très bonne voie, seuls quelques ajustements sont nécessaires afin qu’elle soit fonctionnelle.
 
-La création du "bot" a commencé lors de la dernière séance, elle sera poursuivie lors de nos prochaines séances par : XXX.
+La création du "bot" a commencé lors de la dernière séance, cependant n'étant pas la priorité absolue le projet du bot sera mis en stand-by tant que la partie graphique du programme n'est pas prête.
 
-Le développement de la partie graphique commencera dès que la v1.0 sera purement fonctionnelle il sera géré par : Clément et XX
+Le développement de la partie graphique commencera dès que la v1.0 sera purement fonctionnelle il sera géré par : Clément, Martin et Thomas.
