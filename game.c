@@ -19,11 +19,10 @@ void tour(int othellier[N][N],joueur* X){
 
   pion* pion_1;
   pion_1 = malloc(sizeof(pion));
-  //affichage_coup(othellier,X);
+  affichage_coup(othellier,X);
   choix_coup(othellier,pion_1);
   MAJ_othellier(othellier,pion_1,X);
-  retourne(othellier,X,pion_1);
-
+  afficher_otthelier(othellier);
 }
 
 void jeu(){
@@ -62,16 +61,24 @@ void jeu(){
     nb_tour=0;
   }
 
-  while(!fin_partie){
+  printf("test apres premier tour du premier joueur\n");
+
+  while(fin_partie!=1){
     if(nb_tour%2!=0){
       tour(othellier,B);
     }else{
       tour(othellier,A);
     }
+    compte_pion(othellier,A,B);
     nb_tour++;
     if(A->nb_pions==0 || B->nb_pions==0)
-      fin_partie = VRAI;
+      fin_partie = 1;
   }
+
+  if(A->nb_pions==0)
+    printf("%s a gagner!\n", B->pseudo);
+  if(B->nb_pions==0)
+    printf("%s a gagner!\n", A->pseudo);
 
 
   free(A->pseudo);

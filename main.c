@@ -12,7 +12,6 @@ int main(){
 
   int rep;
 
-
   do{
 		  affichage_menu();
 

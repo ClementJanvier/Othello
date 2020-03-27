@@ -49,6 +49,7 @@ void choix_coup(int othellier[N][N],pion *pion_1); //Choix du coup effectué par
 void MAJ_othellier(int othellier[N][N],pion *pion_1,joueur* X); // Grâce aux PosX et PosY et à l'id du joueur, on place le nouveau pion et on retourne les pions nécéssaires
 // Dans le fonction ci-dessus on appelera la fonction ci-dessous.
 void retourne(int othellier[N][N],joueur* X, pion *pion_1); // Cette fonction parcours les pions et grâce a la pos du dernier pion posé elle met à jour la matrice en retournant les pions si nécéssaires.
+void compte_pion(int othellier[N][N], joueur* A, joueur* B); //Compte le nombre de pion restant sur l'othellier et met à jour la structure du joueur
 
 /*JEU*/
 void jeu();//La fonction est la fonction qui gère le déroulement du jeu, l'enchainement de toutes les fonctions ci-des
