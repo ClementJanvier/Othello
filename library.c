@@ -8,18 +8,12 @@
 
 
 void affichage_menu(){ // Affiche le menu de jeu
-  printf("\n  Menu:\n");
+  printf("\n \n  /******* Menu *******/ \n \n");
 	printf("1) Joueur contre joueur\n");
-	printf("2) Jouer contre ordinateur\n");
-	printf("3) Quitter\n\n");
+	printf("2) Quitter\n\n");
 }
 
-void affichage_difficulte(){
-  printf("-1- FACILE -1-");
-  printf("-2- NORMAL -2-");
-  printf("-3- INSANE -3-");
-  printf("-4- RETOUR -4-");
-}
+
 
 int dans_matrice(int x, int y) {
     return ((y >= 0) && (y < N) && (x >= 0) && (x < N));
@@ -29,7 +23,7 @@ void choix_pseudo(joueur* A,joueur* B){ //Choix du pseudo dans le cas du JcJ
 
   char strA[30];
   char strB[30];
-
+  printf("\n \n /******* CHOIX DES PSEUDOS *******/ \n \n");
   printf(" Entrez un pseudo pour le joueur A : ");
   scanf("%s",strA);
   A->pseudo=malloc(sizeof(strlen(strA)+1));
@@ -46,8 +40,10 @@ void choix_pseudo(joueur* A,joueur* B){ //Choix du pseudo dans le cas du JcJ
 
 void choix_cote(joueur *A,joueur* B){
   int rep;
+  printf("\n \n /******* CHOIX DE LA COULEUR *******/ \n \n");
   do{
-    printf("%s, Pour jouer la couleur blanche rentrez 1 ou 2 pour la couleur noire :",A->pseudo);
+    printf(" Joueur %s, \n --> Choisissez 1 pour jouer la couleur blanche <-- \n --> Choisissez 2 pour jouer la couleur noir <-- \n",A->pseudo);
+    printf("CHOIX : ");
     scanf("%d",&rep);
   } while( (rep!=1 && rep!=2 ) );
 
@@ -81,8 +77,7 @@ void config_othellier(int othellier[N][N]){ // Mets en place la configuration de
   othellier[3][4]=2;
 }
 
-void afficher_otthelier(int othellier[N][N]){
-
+void afficher_othellier(int othellier[N][N]){
   //Déclaration des variables
   int i, j;
 
@@ -113,135 +108,148 @@ void affichage_coup(int othellier[N][N], joueur *X){
     int nb_choix =0;
     int i, j;
     int x, y;
-
+    int sortir=0;
     int c_pion, c_pion_adv; //couleur du pion du joueur et celle de son adversaire.
 
-    if(X->couleur_j==1){ //si le joueur a les pions noir
-      c_pion = 1; //noir est repertorié comme étant égal à 1 sur l'othellier
-      c_pion_adv = 2; // blanc comme étant égal à 2
+    if(X->couleur_j==2){ //si le joueur a les pions noir
+      c_pion = 2; //noir est repertorié comme étant égal à 1 sur l'othellier
+      c_pion_adv = 1; // blanc comme étant égal à 2
     }else{
-      c_pion = 2;
-      c_pion_adv = 1;
+      c_pion = 1;
+      c_pion_adv = 2;
     }
-
+ 
     for(i = 0; i<N ; i++){
         for( j=0; j<N ; j++){
            if(othellier[i][j]==c_pion){
 
-             if((othellier[i+1][j]==c_pion_adv && dans_matrice(i+1,j)==1)){ //haut et dans la matrice
+             
+             if(othellier[i+1][j]==c_pion_adv && dans_matrice(i+1,j)==1){ //bas et dans la matrice
                 x = i+1; //x prend les coordonées de la case en cours dont on sait quelle est blanche
                 y = j;
-                while(othellier[x][y]==c_pion_adv){
-                  if(othellier[x+1][y]==c_pion_adv){
-                    x++;
-                  }else if (othellier[x+1][y]==0){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x+1,y);
-                    x++;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  x++;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
                     nb_choix++;
-                  }
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
                 }
               }
-              if((othellier[i+1][j+1]==c_pion_adv && dans_matrice(i+1,j+1)==1)){ //diagonale haut droite
+              sortir=0;
+              if(othellier[i+1][j+1]==c_pion_adv && dans_matrice(i+1,j+1)==1){ //diagonale bas droite
                 x = i+1; //x prend les coordonées de la case en cours dont on sait quelle est blanche
                 y = j+1;
 
-                while(othellier[x][y]==c_pion_adv){
-                  if(othellier[x+1][y+1]==c_pion_adv){
-                    x++;
-                    y++;
-                  }else if (othellier[x+1][y+1]==0){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x+1,y+1);
-                    x++;
-                    y++;
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  x++;
+                  y++;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
                     nb_choix++;
-                  }
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
                 }
-
               }
+              
+              sortir=0;
               if(othellier[i][j+1]==c_pion_adv && dans_matrice(i,j+1)==1){ // droite et dans la matrice
                 x = i;
                 y = j+1;
-                while(othellier[x][y]==c_pion_adv){
-                  if(othellier[x][y+1]==c_pion_adv){
-                    y++;
-                  }else if (othellier[x][y+1]==0){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y+1);
-                    y++;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  y++;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
                     nb_choix++;
-                  }
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
                 }
               }
-              if(othellier[i-1][j+1]==c_pion_adv && dans_matrice(i-1,j+1)==1){ //diagonale bas droite et dans la matrice
+              sortir=0;
+
+              if(othellier[i-1][j+1]==c_pion_adv && dans_matrice(i-1,j+1)==1){ //diagonale haut droite et dans la matrice
                 x = i-1;
                 y = j+1;
-                while(othellier[x][y]==c_pion_adv){
-                  if(othellier[x-1][y+1]==c_pion_adv){
-                    x--;
-                    y++;
-                  }else if (othellier[x-1][y+1]==0){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x-1,y+1);
-                    x--;
-                    y++;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  x--;
+                  y++;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
                     nb_choix++;
-                  }
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
                 }
               }
-              if(othellier[i-1][j]==c_pion_adv && dans_matrice(i-1,j)==1){ //bas et dans la matrice
+              sortir=0;
+              if(othellier[i-1][j]==c_pion_adv && dans_matrice(i-1,j)==1){ //haut et dans la matrice
                 x = i-1;
                 y = j;
-                while(othellier[x][y]==c_pion_adv){
-                  if(othellier[x-1][y]==c_pion_adv){
-                    x--;
-                  }else if (othellier[x-1][y]==0){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x-1,y);
-                    x--;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  x--;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
                     nb_choix++;
-                  }
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
                 }
               }
-              if(othellier[i-1][j-1]==c_pion_adv && dans_matrice(i-1,j-1)==1){ //diagonale bas gauche et dans la matrice
+              sortir=0;
+              if(othellier[i-1][j-1]==c_pion_adv && dans_matrice(i-1,j-1)==1){ //diagonale haut gauche et dans la matrice
                 x = i-1;
                 y = j-1;
-                while(othellier[x][y]==c_pion_adv){
-                  if(othellier[x-1][y-1]==c_pion_adv){
-                    x--;
-                    y--;
-                  }else if (othellier[x-1][y-1]==0){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x-1,y-1);
-                    x--;
-                    y--;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  x--;
+                  y--;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
                     nb_choix++;
-                  }
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
                 }
               }
+              sortir=0;
               if(othellier[i][j-1]==c_pion_adv && dans_matrice(i,j-1)==1){ //gauche et dans la matrice
                 x = i;
                 y = j-1;
-                while(othellier[x][y]==c_pion_adv){
-                  if(othellier[x][y-1]==c_pion_adv){
-                    y--;
-                  }else if (othellier[x][y-1]==0){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y-1);
-                    y--;
+
+               while( sortir != 1 && dans_matrice(x,y)==1){
+                  y--;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
                     nb_choix++;
-                  }
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
                 }
               }
-              if(othellier[i+1][j-1]==c_pion_adv && dans_matrice(i+1,j-1)==1){ //diagonale haut gauche et dans la matrice
+              sortir=0;
+              if(othellier[i+1][j-1]==c_pion_adv && dans_matrice(i+1,j-1)==1){ //diagonale bas gauche et dans la matrice
                 x = i+1;
                 y = j -1;
-                while(othellier[x][y]==c_pion_adv){
-                  if(othellier[x+1][y-1]==c_pion_adv){
-                    x++;
-                    j--;
-                  }else if (othellier[x+1][y-1]==0){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x+1,y-1);
-                    x++;
-                    y--;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  x++;
+                  y--;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
                     nb_choix++;
-                  }
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
                 }
               }
+              sortir=0;
            }
          }
       }
@@ -249,7 +257,7 @@ void affichage_coup(int othellier[N][N], joueur *X){
 
 void choix_coup(int othellier[N][N],pion* pion_1){ //Choix du coup effectué par le joueur
 
-    printf("Donnez les coordonnées du pion choisi \n");
+    printf(" \n Choisissez les coordonnées d'une case pour jouer : \n");
     printf("X = ");
     scanf("%d",&pion_1->PosX);
     printf("Y = ");
@@ -422,9 +430,157 @@ void MAJ_othellier(int othellier[N][N], pion *pion_1,joueur* X){
     retourne(othellier,X, pion_1); // rajoute joueur X
 }
 
+
+
+int peux_jouer(int othellier[N][N], joueur *X){
+    int nb_choix =0;
+    int i, j;
+    int x, y;
+    int sortir=0;
+    int c_pion, c_pion_adv; //couleur du pion du joueur et celle de son adversaire.
+
+    if(X->couleur_j==2){ //si le joueur a les pions noir
+      c_pion = 2; //noir est repertorié comme étant égal à 1 sur l'othellier
+      c_pion_adv = 1; // blanc comme étant égal à 2
+    }else{
+      c_pion = 1;
+      c_pion_adv = 2;
+    }
+ 
+    for(i = 0; i<N ; i++){
+        for( j=0; j<N ; j++){
+           if(othellier[i][j]==c_pion){
+
+             
+             if(othellier[i+1][j]==c_pion_adv && dans_matrice(i+1,j)==1){ //bas et dans la matrice
+                x = i+1; //x prend les coordonées de la case en cours dont on sait quelle est blanche
+                y = j;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  x++;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    nb_choix++;
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
+                }
+              }
+              sortir=0;
+              if(othellier[i+1][j+1]==c_pion_adv && dans_matrice(i+1,j+1)==1){ //diagonale bas droite
+                x = i+1; //x prend les coordonées de la case en cours dont on sait quelle est blanche
+                y = j+1;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  x++;
+                  y++;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    nb_choix++;
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
+                }
+              }
+              
+              sortir=0;
+              if(othellier[i][j+1]==c_pion_adv && dans_matrice(i,j+1)==1){ // droite et dans la matrice
+                x = i;
+                y = j+1;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  y++;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    nb_choix++;
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
+                }
+              }
+              sortir=0;
+
+              if(othellier[i-1][j+1]==c_pion_adv && dans_matrice(i-1,j+1)==1){ //diagonale haut droite et dans la matrice
+                x = i-1;
+                y = j+1;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  x--;
+                  y++;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    nb_choix++;
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
+                }
+              }
+              sortir=0;
+              if(othellier[i-1][j]==c_pion_adv && dans_matrice(i-1,j)==1){ //haut et dans la matrice
+                x = i-1;
+                y = j;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  x--;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    nb_choix++;
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
+                }
+              }
+              sortir=0;
+              if(othellier[i-1][j-1]==c_pion_adv && dans_matrice(i-1,j-1)==1){ //diagonale haut gauche et dans la matrice
+                x = i-1;
+                y = j-1;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  x--;
+                  y--;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    nb_choix++;
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
+                }
+              }
+              sortir=0;
+              if(othellier[i][j-1]==c_pion_adv && dans_matrice(i,j-1)==1){ //gauche et dans la matrice
+                x = i;
+                y = j-1;
+
+               while( sortir != 1 && dans_matrice(x,y)==1){
+                  y--;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    nb_choix++;
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
+                }
+              }
+              sortir=0;
+              if(othellier[i+1][j-1]==c_pion_adv && dans_matrice(i+1,j-1)==1){ //diagonale bas gauche et dans la matrice
+                x = i+1;
+                y = j -1;
+
+                while( sortir != 1 && dans_matrice(x,y)==1){
+                  x++;
+                  y--;
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                    nb_choix++;
+                    sortir=1;
+                  }else if(othellier[x][y]==c_pion)
+                    sortir=1;
+                }
+              }
+              sortir=0;
+           }
+         }
+      }
+  return nb_choix;
+}
+
+
 void compte_pion(int othellier[N][N], joueur* A, joueur* B){ //compte le nombre de pions de chaque joueurs
   int i, j;
-
+  A->nb_pions = 0;
+  B->nb_pions = 0;
   for(i=0; i<N; i++){
     for(j=0; j<N; j++){
       if(A->couleur_j==1){ // si le joueur A possede les pions blancs
@@ -442,3 +598,12 @@ void compte_pion(int othellier[N][N], joueur* A, joueur* B){ //compte le nombre 
     }
   }
 }
+
+
+
+void affiche_nb_pions(joueur* A, joueur* B){
+    printf("\n \n /******* TOTAL DES POINTS *******/ :\n \n");
+    printf(" %s à %d pions \n",A->pseudo,A->nb_pions);
+    printf(" %s à %d pions \n",B->pseudo,B->nb_pions);
+  }
+

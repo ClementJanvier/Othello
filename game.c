@@ -19,14 +19,18 @@ void tour(int othellier[N][N],joueur* X){
 
   pion* pion_1;
   pion_1 = malloc(sizeof(pion));
+  printf(" \n  Joueur %s , à votre tour ! \n",X->pseudo);
   affichage_coup(othellier,X);
   choix_coup(othellier,pion_1);
   MAJ_othellier(othellier,pion_1,X);
-  afficher_otthelier(othellier);
+  printf(" \n \n /******* AFFICHAGE DE L'OTHELLIER *******/ \n \n");
+  afficher_othellier(othellier);
+  free(pion_1);
 }
 
 void jeu(){
 
+  int num_tour = 1;
   //Initialisation de la matrice de jeu
   int othellier[N][N];
 
@@ -48,7 +52,8 @@ void jeu(){
   choix_cote(A,B);
 
   //Affichage de l'othellier avec sa configuration initialise
-  afficher_otthelier(othellier);
+  printf("\n \n /******* INITIALISATION DE L'OTHELLIER *******/ \n \n");
+  afficher_othellier(othellier);
 
   //Choix de qui commence
   if(A->couleur_j==2){
@@ -61,24 +66,37 @@ void jeu(){
     nb_tour=0;
   }
 
-  printf("test apres premier tour du premier joueur\n");
-
   while(fin_partie!=1){
+
+
     if(nb_tour%2!=0){
-      tour(othellier,B);
+      if(peux_jouer(othellier,B)!=0){
+        tour(othellier,B);
+      }
+      else{
+        fin_partie++;
+      }
+
+
     }else{
-      tour(othellier,A);
+      if(peux_jouer(othellier,A)!=0){
+        tour(othellier,A);
+      } else {
+        fin_partie++;
+      }
     }
     compte_pion(othellier,A,B);
+    affiche_nb_pions(A,B);
     nb_tour++;
-    if(A->nb_pions==0 || B->nb_pions==0)
-      fin_partie = 1;
+    num_tour++;
   }
+  printf("\n /******* PARTIE TERMINE *******/ \n");
+  if(A->nb_pions>B->nb_pions)
+    printf("%s est le joueur gagnant",A->pseudo);
+  else
+    printf("%s est le joueur gagnant",B->pseudo);
 
-  if(A->nb_pions==0)
-    printf("%s a gagner!\n", B->pseudo);
-  if(B->nb_pions==0)
-    printf("%s a gagner!\n", A->pseudo);
+  
 
 
   free(A->pseudo);

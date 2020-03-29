@@ -17,20 +17,19 @@ int main(){
 
 	  // Lecture et verification du choix de l'utilisateur
 		  do{
-			  printf("Votre choix [1-3] ? ");
+			  printf("Votre choix [1-2] ? ");
 			  scanf("%d",&rep);
-			  if (rep < 1 || rep > 3){
+			  if (rep < 1 || rep > 2){
 				  printf("Votre choix doit etre compris entre 1 et 3\n");
         }
-		  }while (rep < 1 || rep > 3);
+		  }while (rep < 1 || rep > 2);
 
 
 		  // Traitement du choix de l'utilisateur
 		  switch (rep){
-			  case 1: printf("Le jeu va démarrer \n");jeu(); break;
+			  case 1: printf("\n \n /******* LE JEU VA DEMARRER *******/ \n \n");jeu(); break;
 
-			  case 2: //LE joueur choisit de jouer contre l'ordinateur, il choisit ensuite sa difficulté et affronte l'ordinateur.
-			  case 3 : printf("Merci d'avoir joué à notre jeu !\n"); //Le joueur décide de quitter le jeu
+			  case 2 : printf("Merci d'avoir joué à notre jeu !\n"); //Le joueur décide de quitter le jeu
 			  break;
 			}
 
@@ -38,7 +37,7 @@ int main(){
 		//if(debog)
 		//	afficher_table();
 	}
-	while (rep != 3);
+	while (rep != 2);
 
 	return EXIT_SUCCESS;
 

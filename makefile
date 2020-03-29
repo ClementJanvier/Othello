@@ -9,3 +9,9 @@ library.o: library.c library.h
 
 game.o: game.c library.h
 		gcc -c game.c
+
+clean:
+	rm -rm *.o
+
+mrproper: clean
+	rm -rm hello
