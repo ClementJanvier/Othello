@@ -82,15 +82,17 @@ void afficher_othellier(int othellier[N][N]){
   int i, j;
 
   //Parcours des matrices et remplissage de la matrice affichage
-  printf("  ");
+  printf("  Y ");
   for (j = 0; j < N; j++) {
     printf("%d ", j);
   }
   printf("\n");
-  for(i =0 ; i<N+1 ; i++){
+  printf("X\n");
+
+  for(i =0 ; i<N ; i++){
     if(i!=8)
       printf("%d ", i);
-
+      printf("  ");
     for(j=0 ; j<N ; j++){
       if(othellier[i][j]==0){          //si la case est vide (case=0) on l'affiche par un espace
         printf("* ");
