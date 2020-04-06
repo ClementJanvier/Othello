@@ -44,8 +44,8 @@ void affichage_menu();//Affiche le menu de jeu; FAIT
 /*Tour*/
 //on change le joueur de qui c'est le tour
 int peux_jouer(int othellier[N][N], joueur *X);
-void affichage_coup(int othellier[N][N], joueur* X); //affichage coups possibles
-void choix_coup(int othellier[N][N],pion *pion_1); //Choix du coup effectué par le joueur, return les pos du pion à poser
+void affichage_coup(int othellier[N][N], joueur* X,pion* pion_1); //affichage coups possibles
+void choix_coup(int othellier[N][N],pion* pion_1,int TabX[],int TabY[],int nb_coup); //Choix du coup effectué par le joueur, return les pos du pion à poser
 void MAJ_othellier(int othellier[N][N],pion *pion_1,joueur* X); // Grâce aux PosX et PosY et à l'id du joueur, on place le nouveau pion et on retourne les pions nécéssaires
 // Dans le fonction ci-dessus on appelera la fonction ci-dessous.
 void retourne(int othellier[N][N],joueur* X, pion *pion_1); // Cette fonction parcours les pions et grâce a la pos du dernier pion posé elle met à jour la matrice en retournant les pions si nécéssaires.
