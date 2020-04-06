@@ -20,8 +20,7 @@ void tour(int othellier[N][N],joueur* X){
   pion* pion_1;
   pion_1 = malloc(sizeof(pion));
   printf(" \n  Joueur %s , à votre tour ! \n",X->pseudo);
-  affichage_coup(othellier,X);
-  choix_coup(othellier,pion_1);
+  affichage_coup(othellier,X,pion_1);
   MAJ_othellier(othellier,pion_1,X);
   printf(" \n \n /******* AFFICHAGE DE L'OTHELLIER *******/ \n \n");
   afficher_othellier(othellier);
