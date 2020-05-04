@@ -42,7 +42,7 @@ void choix_cote(joueur *A,joueur* B){
   int rep;
   printf("\n \n /******* CHOIX DE LA COULEUR *******/ \n \n");
   do{
-    printf(" Joueur %s, \n --> Choisissez 1 pour jouer la couleur blanche <-- \n --> Choisissez 2 pour jouer la couleur noir <-- \n",A->pseudo);
+    printf(" Joueur %s, \n --> Choisissez 1 pour jouer la couleur noir <-- \n --> Choisissez 2 pour jouer la couleur blanche <-- \n",A->pseudo);
     printf("CHOIX : ");
     scanf("%d",&rep);
   } while( (rep!=1 && rep!=2 ) );
@@ -114,6 +114,8 @@ void affichage_coup(int othellier[N][N], joueur *X,pion* pion_1){
     int c_pion, c_pion_adv; //couleur du pion du joueur et celle de son adversaire.
     int TabX[25];
     int TabY[25];
+    int indice = 0;
+    int deja_present = 0;
 
     if(X->couleur_j==2){ //si le joueur a les pions noir
       c_pion = 2; //noir est repertorié comme étant égal à 1 sur l'othellier
@@ -135,10 +137,20 @@ void affichage_coup(int othellier[N][N], joueur *X,pion* pion_1){
                 while( sortir != 1 && dans_matrice(x,y)==1){
                   x++;
                   if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                    TabX[nb_choix]=x;
-                    TabY[nb_choix]=y;
-                    nb_choix++;
+
+                    for(indice = 0; indice<nb_choix ; indice++){
+                      if((TabX[indice]==x) && (TabY[indice]==y)){
+                        deja_present = 1;
+                      }
+                    }
+
+                    if(deja_present == 0){
+                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
+                      TabX[nb_choix]=x;
+                      TabY[nb_choix]=y;
+                      nb_choix++;
+                    }
+                    deja_present=0;
                     sortir=1;
                   }else if(othellier[x][y]==c_pion)
                     sortir=1;
@@ -153,10 +165,20 @@ void affichage_coup(int othellier[N][N], joueur *X,pion* pion_1){
                   x++;
                   y++;
                   if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                    TabX[nb_choix]=x;
-                    TabY[nb_choix]=y;
-                    nb_choix++;
+
+                      for(indice = 0; indice<nb_choix ; indice++){
+                      if((TabX[indice]==x) && (TabY[indice]==y)){
+                        deja_present = 1;
+                      }
+                    }
+
+                    if(deja_present == 0){
+                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
+                      TabX[nb_choix]=x;
+                      TabY[nb_choix]=y;
+                      nb_choix++;
+                    }
+                    deja_present=0;
                     sortir=1;
                   }else if(othellier[x][y]==c_pion)
                     sortir=1;
@@ -171,10 +193,19 @@ void affichage_coup(int othellier[N][N], joueur *X,pion* pion_1){
                 while( sortir != 1 && dans_matrice(x,y)==1){
                   y++;
                   if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                    TabX[nb_choix]=x;
-                    TabY[nb_choix]=y;
-                    nb_choix++;
+                      for(indice = 0; indice<nb_choix ; indice++){
+                      if((TabX[indice]==x) && (TabY[indice]==y)){
+                        deja_present = 1;
+                      }
+                    }
+
+                    if(deja_present == 0){
+                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
+                      TabX[nb_choix]=x;
+                      TabY[nb_choix]=y;
+                      nb_choix++;
+                    }
+                    deja_present=0;
                     sortir=1;
                   }else if(othellier[x][y]==c_pion)
                     sortir=1;
@@ -190,10 +221,19 @@ void affichage_coup(int othellier[N][N], joueur *X,pion* pion_1){
                   x--;
                   y++;
                   if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                    TabX[nb_choix]=x;
-                    TabY[nb_choix]=y;
-                    nb_choix++;
+                      for(indice = 0; indice<nb_choix ; indice++){
+                      if((TabX[indice]==x) && (TabY[indice]==y)){
+                        deja_present = 1;
+                      }
+                    }
+
+                    if(deja_present == 0){
+                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
+                      TabX[nb_choix]=x;
+                      TabY[nb_choix]=y;
+                      nb_choix++;
+                    }
+                    deja_present=0;
                     sortir=1;
                   }else if(othellier[x][y]==c_pion)
                     sortir=1;
@@ -207,10 +247,19 @@ void affichage_coup(int othellier[N][N], joueur *X,pion* pion_1){
                 while( sortir != 1 && dans_matrice(x,y)==1){
                   x--;
                   if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                    TabX[nb_choix]=x;
-                    TabY[nb_choix]=y;
-                    nb_choix++;
+                      for(indice = 0; indice<nb_choix ; indice++){
+                      if((TabX[indice]==x) && (TabY[indice]==y)){
+                        deja_present = 1;
+                      }
+                    }
+
+                    if(deja_present == 0){
+                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
+                      TabX[nb_choix]=x;
+                      TabY[nb_choix]=y;
+                      nb_choix++;
+                    }
+                    deja_present=0;
                     sortir=1;
                   }else if(othellier[x][y]==c_pion)
                     sortir=1;
@@ -225,10 +274,19 @@ void affichage_coup(int othellier[N][N], joueur *X,pion* pion_1){
                   x--;
                   y--;
                   if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                    TabX[nb_choix]=x;
-                    TabY[nb_choix]=y;
-                    nb_choix++;
+                     for(indice = 0; indice<nb_choix ; indice++){
+                      if((TabX[indice]==x) && (TabY[indice]==y)){
+                        deja_present = 1;
+                      }
+                    }
+
+                    if(deja_present == 0){
+                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
+                      TabX[nb_choix]=x;
+                      TabY[nb_choix]=y;
+                      nb_choix++;
+                    }
+                    deja_present=0;
                     sortir=1;
                   }else if(othellier[x][y]==c_pion)
                     sortir=1;
@@ -242,10 +300,19 @@ void affichage_coup(int othellier[N][N], joueur *X,pion* pion_1){
                while( sortir != 1 && dans_matrice(x,y)==1){
                   y--;
                   if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                    TabX[nb_choix]=x;
-                    TabY[nb_choix]=y;
-                    nb_choix++;
+                     for(indice = 0; indice<nb_choix ; indice++){
+                      if((TabX[indice]==x) && (TabY[indice]==y)){
+                        deja_present = 1;
+                      }
+                    }
+
+                    if(deja_present == 0){
+                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
+                      TabX[nb_choix]=x;
+                      TabY[nb_choix]=y;
+                      nb_choix++;
+                    }
+                    deja_present=0;
                     sortir=1;
                   }else if(othellier[x][y]==c_pion)
                     sortir=1;
@@ -260,10 +327,19 @@ void affichage_coup(int othellier[N][N], joueur *X,pion* pion_1){
                   x++;
                   y--;
                   if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                    printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                    TabX[nb_choix]=x;
-                    TabY[nb_choix]=y;
-                    nb_choix++;
+                     for(indice = 0; indice<nb_choix ; indice++){
+                      if((TabX[indice]==x) && (TabY[indice]==y)){
+                        deja_present = 1;
+                      }
+                    }
+
+                    if(deja_present == 0){
+                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
+                      TabX[nb_choix]=x;
+                      TabY[nb_choix]=y;
+                      nb_choix++;
+                    }
+                    deja_present=0;
                     sortir=1;
                   }else if(othellier[x][y]==c_pion)
                     sortir=1;
