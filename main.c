@@ -1,12 +1,17 @@
+/**
+  *\file main.c
+  *\author: Martin JOUFFLINEAU, Achraf LAGCHOUR, Clément JANVIER et Thomas JAVELLE
+  *\version 1.0
+  *\date 2020
+  */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "library.h"
 
 /**
-*\file main.c
-*\author Martin Thomas Clément Achraf
-*\version 1.0
-*\date 03/02/2020
+  *\fn int main()
+  *\return EXIT_SUCCESS Permet de avoir le bon fonctionnement du programme
 */
 int main(){
 

@@ -1,32 +1,43 @@
 /**
-*\ file game.c
-*\ author: Martin Achraf Clément Thomas
-*\ version 1.0
-*\date 03/02/2020
-*/
+  *\file game.c
+  *\brief Fichier contenant la fonction principal pour jouer
+  *\author: Martin JOUFFLINEAU, Achraf LAGCHOUR, Clément JANVIER et Thomas JAVELLE
+  *\version 1.0
+  *\date 2020
+  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "library.h"
 
+
+/**
+  \*def N
+  Defini la taille de l'othellier
+  */
 #define N 8
-#define VRAI 1
-#define FAUX 0
 
-
-
+/**
+  *\fn void tour(int othellier[N][N],joueur* X)
+  *\brief Tour de jeu
+  *\param othellier Matrice du jeu
+  *\param X Joueur en train de joueur
+*/
 void tour(int othellier[N][N],joueur* X){
 
   pion* pion_1;
   pion_1 = malloc(sizeof(pion));
   printf(" \n  Joueur %s , à votre tour ! \n",X->pseudo);
-  affichage_coup(othellier,X,pion_1);
+  affichage_coup(othellier,X, pion_1);
   MAJ_othellier(othellier,pion_1,X);
-  printf(" \n \n /******* AFFICHAGE DE L'OTHELLIER *******/ \n \n");
   afficher_othellier(othellier);
   free(pion_1);
 }
 
+/**
+  *\fn void jeu()
+  *\brief Permet de jouer à une partie entière en utilsant la fonction tour
+*/
 void jeu(){
 
   int num_tour = 1;
@@ -95,7 +106,7 @@ void jeu(){
   else
     printf("%s est le joueur gagnant",B->pseudo);
 
-  
+
 
 
   free(A->pseudo);
