@@ -15,7 +15,7 @@ void affichage_menu(){ // Affiche le menu de jeu
 
 
 
-int dans_matrice(int x, int y) {
+int dans_matrice(int x, int y) { // Fonction minime pour tester si deux coordonnées sont dans la matrice
     return ((y >= 0) && (y < N) && (x >= 0) && (x < N));
 }
 
@@ -23,7 +23,8 @@ void choix_pseudo(joueur* A,joueur* B){ //Choix du pseudo dans le cas du JcJ
 
   char strA[30];
   char strB[30];
-  printf("\n \n /******* CHOIX DES PSEUDOS *******/ \n \n");
+
+  printf("\n \n /******* CHOIX DES PSEUDOS *******/ \n \n"); 
   printf(" Entrez un pseudo pour le joueur A : ");
   scanf("%s",strA);
   A->pseudo=malloc(sizeof(strlen(strA)+1));
@@ -38,16 +39,18 @@ void choix_pseudo(joueur* A,joueur* B){ //Choix du pseudo dans le cas du JcJ
 
 }
 
-void choix_cote(joueur *A,joueur* B){
-  int rep;
+void choix_cote(joueur *A,joueur* B){ // Fonction qui demande au joueur leurs pseudos
+
+  int choix;
+
   printf("\n \n /******* CHOIX DE LA COULEUR *******/ \n \n");
   do{
     printf(" Joueur %s, \n --> Choisissez 1 pour jouer la couleur noir <-- \n --> Choisissez 2 pour jouer la couleur blanche <-- \n",A->pseudo);
     printf("CHOIX : ");
-    scanf("%d",&rep);
-  } while( (rep!=1 && rep!=2 ) );
+    scanf("%d",&choix);
+  } while( (choix!=1 && choix!=2 ) );
 
-  if( rep == 1){
+  if( choix == 1){
     A->couleur_j=2; //Le joueur A a la couleur noire
     B->couleur_j=1; // Le joueur B a la couleur blanche
   }
@@ -107,16 +110,21 @@ void afficher_othellier(int othellier[N][N]){
 }
 
 void affichage_coup(int othellier[N][N], joueur *X,pion* pion_1){
+
+
+  /////// Initialisation des variables ///////
+
     int nb_choix =0;
     int i, j;
     int x, y;
-    int sortir=0;
+    int sortir=0; // Variable permettant de sortir de la boucle qui regarde les n prochains voisins
     int c_pion, c_pion_adv; //couleur du pion du joueur et celle de son adversaire.
-    int TabX[25];
+    int TabX[25]; // Deux tableau pour stocker les coordonnées X et Y des coups possibles
     int TabY[25];
-    int indice = 0;
-    int deja_present = 0;
+    int indice = 0; // Variable supplémentaire pour parcourir le tableau de stockage des coups
+    int deja_present = 0; // Variable permettant de savoir si un choix est déjà présent dans le tableau pour éviter les doublons
 
+  ////////////////////////////////////////////
     if(X->couleur_j==2){ //si le joueur a les pions noir
       c_pion = 2; //noir est repertorié comme étant égal à 1 sur l'othellier
       c_pion_adv = 1; // blanc comme étant égal à 2
@@ -131,20 +139,20 @@ void affichage_coup(int othellier[N][N], joueur *X,pion* pion_1){
 
              
              if(othellier[i+1][j]==c_pion_adv && dans_matrice(i+1,j)==1){ //bas et dans la matrice
-                x = i+1; //x prend les coordonées de la case en cours dont on sait quelle est blanche
+                x = i+1; 
                 y = j;
 
                 while( sortir != 1 && dans_matrice(x,y)==1){
                   x++;
-                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){
+                  if(othellier[x][y]==0 && dans_matrice(x,y)==1){ // Si la case est pas occupé alors le coup est possible
 
-                    for(indice = 0; indice<nb_choix ; indice++){
+                    for(indice = 0; indice<nb_choix ; indice++){ // On vérifie si le coup n'est pas déjà dans le tableau
                       if((TabX[indice]==x) && (TabY[indice]==y)){
                         deja_present = 1;
                       }
                     }
 
-                    if(deja_present == 0){
+                    if(deja_present == 0){ // Si le coup n'est pas dans le tableau alors on le rentre dedans
                       printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
                       TabX[nb_choix]=x;
                       TabY[nb_choix]=y;
@@ -158,7 +166,7 @@ void affichage_coup(int othellier[N][N], joueur *X,pion* pion_1){
               }
               sortir=0;
               if(othellier[i+1][j+1]==c_pion_adv && dans_matrice(i+1,j+1)==1){ //diagonale bas droite
-                x = i+1; //x prend les coordonées de la case en cours dont on sait quelle est blanche
+                x = i+1; 
                 y = j+1;
 
                 while( sortir != 1 && dans_matrice(x,y)==1){
@@ -703,7 +711,7 @@ void compte_pion(int othellier[N][N], joueur* A, joueur* B){ //compte le nombre 
 
 
 
-void affiche_nb_pions(joueur* A, joueur* B){
+void affiche_nb_pions(joueur* A, joueur* B){ // Fonctions permettant d'afficher les nombres de pions
     printf("\n \n /******* TOTAL DES POINTS *******/ :\n \n");
     printf(" %s à %d pions \n",A->pseudo,A->nb_pions);
     printf(" %s à %d pions \n",B->pseudo,B->nb_pions);
