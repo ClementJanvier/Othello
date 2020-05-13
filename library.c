@@ -437,7 +437,6 @@ void choix_coup(int othellier[N][N],pion* pion_1,int TabX[],int TabY[],int nb_co
   int choix=0;
 
   do{
-    printf("%d",nb_coup);
     printf("Choississez le numéro du coup à jouer :");
     scanf("%d",&choix);
 
