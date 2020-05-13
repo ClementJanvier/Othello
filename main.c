@@ -25,7 +25,7 @@ int main(){
 			  printf("Votre choix [1-2] ? ");
 			  scanf("%d",&rep);
 			  if (rep < 1 || rep > 2){
-				  printf("Votre choix doit etre compris entre 1 et 3\n");
+				  printf("Votre choix doit etre compris entre 1 et 2\n");
         }
 		  }while (rep < 1 || rep > 2);
 
@@ -39,8 +39,7 @@ int main(){
 			}
 
 
-		//if(debog)
-		//	afficher_table();
+		
 	}
 	while (rep != 2);
 
