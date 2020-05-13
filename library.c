@@ -179,7 +179,9 @@ void affichage_coup(int othellier[N][N], joueur* X,pion* pion_1){
       int c_pion, c_pion_adv; //couleur du pion du joueur et celle de son adversaire.
       int TabX[25];
       int TabY[25];
-
+      int indice = 0; // Variable supplémentaire pour parcourir le tableau de stockage des coups
+      int deja_present = 0; // Variable permettant de savoir si un choix est déjà présent dans le tableau pour éviter les doublons
+	
       if(X->couleur_j==2){ //si le joueur a les pions noir
         c_pion = 2; //noir est repertorié comme étant égal à 1 sur l'othellier
         c_pion_adv = 1; // blanc comme étant égal à 2
