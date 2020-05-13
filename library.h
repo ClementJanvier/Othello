@@ -33,9 +33,7 @@
     char *pseudo; /** Pseudo du joueur */
     int couleur_j; /** Couleur du joueur 1 (1 pour noir et 2 pour blanc) */
     int nb_pions; /** Nombre de pions de sa couleur sur l'othellier */
-    int nb_tour; /** Nombre de tour que le joueur a joué depuis le début de la partie */
-    int plus_gros_coup; /** Coup prenant le plus de pions adverses */
-    int palmares[3]; /** Victoire,nuls,défaites */
+
   }joueur;
 
   /**
