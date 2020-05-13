@@ -440,7 +440,9 @@ void choix_coup(int othellier[N][N],pion* pion_1,int TabX[],int TabY[],int nb_co
     printf("Choississez le numéro du coup à jouer :");
     scanf("%d",&choix);
 
-   
+    if(choix<1 || choix>nb_coup)
+      printf("Veuillez choisir un bon numéro \n");
+	  
   }while(choix<1 || choix>nb_coup);
 
   choix -= 1;
