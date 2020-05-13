@@ -134,7 +134,6 @@ void config_othellier(int othellier[N][N]){ // Mets en place la configuration de
   *\param othellier Matrice du jeu
   */
 void afficher_othellier(int othellier[N][N]){
-  printf(" \n \n /******* AFFICHAGE DE L'OTHELLIER *******/ \n \n");
   //Déclaration des variables
   int i, j;
 
@@ -202,29 +201,49 @@ void affichage_coup(int othellier[N][N], joueur* X,pion* pion_1){
                   while( sortir != 1 && dans_matrice(x,y)==1){
                     x++;
                     if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                      TabX[nb_choix]=x;
-                      TabY[nb_choix]=y;
-                      nb_choix++;
-                      sortir=1;
+
+                        for(indice = 0; indice<nb_choix ; indice++){ // On vérifie si le coup n'est pas déjà dans le tableau
+                            if((TabX[indice]==x) && (TabY[indice]==y)){
+                                deja_present = 1;
+                            }
+                        }
+
+                        if(deja_present == 0){ // Si le coup n'est pas dans le tableau alors on le rentre dedans
+                            printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix+1,x,y);
+                            TabX[nb_choix]=x;
+                            TabY[nb_choix]=y;
+                            nb_choix++;
+                        }
+                        deja_present=0;
+                        sortir=1;
                     }else if(othellier[x][y]==c_pion)
                       sortir=1;
                   }
                 }
                 sortir=0;
                 if(othellier[i+1][j+1]==c_pion_adv && dans_matrice(i+1,j+1)==1){ //diagonale bas droite
-                  x = i+1; //x prend les coordonées de la case en cours dont on sait quelle est blanche
+                  x = i+1; 
                   y = j+1;
 
                   while( sortir != 1 && dans_matrice(x,y)==1){
                     x++;
                     y++;
                     if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                      TabX[nb_choix]=x;
-                      TabY[nb_choix]=y;
-                      nb_choix++;
-                      sortir=1;
+
+                        for(indice = 0; indice<nb_choix ; indice++){ 
+                            if((TabX[indice]==x) && (TabY[indice]==y)){
+                                deja_present = 1;
+                            }
+                        }
+
+                        if(deja_present == 0){ 
+                            printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix+1,x,y);
+                            TabX[nb_choix]=x;
+                            TabY[nb_choix]=y;
+                            nb_choix++;
+                        }
+                        deja_present=0;
+                        sortir=1;
                     }else if(othellier[x][y]==c_pion)
                       sortir=1;
                   }
@@ -238,11 +257,21 @@ void affichage_coup(int othellier[N][N], joueur* X,pion* pion_1){
                   while( sortir != 1 && dans_matrice(x,y)==1){
                     y++;
                     if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                      TabX[nb_choix]=x;
-                      TabY[nb_choix]=y;
-                      nb_choix++;
-                      sortir=1;
+
+                        for(indice = 0; indice<nb_choix ; indice++){ 
+                            if((TabX[indice]==x) && (TabY[indice]==y)){
+                                deja_present = 1;
+                            }
+                        }
+
+                        if(deja_present == 0){ 
+                            printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix+1,x,y);
+                            TabX[nb_choix]=x;
+                            TabY[nb_choix]=y;
+                            nb_choix++;
+                        }
+                        deja_present=0;
+                        sortir=1;
                     }else if(othellier[x][y]==c_pion)
                       sortir=1;
                   }
@@ -257,11 +286,21 @@ void affichage_coup(int othellier[N][N], joueur* X,pion* pion_1){
                     x--;
                     y++;
                     if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                      TabX[nb_choix]=x;
-                      TabY[nb_choix]=y;
-                      nb_choix++;
-                      sortir=1;
+
+                        for(indice = 0; indice<nb_choix ; indice++){ 
+                            if((TabX[indice]==x) && (TabY[indice]==y)){
+                                deja_present = 1;
+                            }
+                        }
+
+                        if(deja_present == 0){ 
+                            printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix+1,x,y);
+                            TabX[nb_choix]=x;
+                            TabY[nb_choix]=y;
+                            nb_choix++;
+                        }
+                        deja_present=0;
+                        sortir=1;
                     }else if(othellier[x][y]==c_pion)
                       sortir=1;
                   }
@@ -274,11 +313,21 @@ void affichage_coup(int othellier[N][N], joueur* X,pion* pion_1){
                   while( sortir != 1 && dans_matrice(x,y)==1){
                     x--;
                     if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                      TabX[nb_choix]=x;
-                      TabY[nb_choix]=y;
-                      nb_choix++;
-                      sortir=1;
+
+                        for(indice = 0; indice<nb_choix ; indice++){ 
+                            if((TabX[indice]==x) && (TabY[indice]==y)){
+                                deja_present = 1;
+                            }
+                        }
+
+                        if(deja_present == 0){ 
+                            printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix+1,x,y);
+                            TabX[nb_choix]=x;
+                            TabY[nb_choix]=y;
+                            nb_choix++;
+                        }
+                        deja_present=0;
+                        sortir=1;
                     }else if(othellier[x][y]==c_pion)
                       sortir=1;
                   }
@@ -292,11 +341,21 @@ void affichage_coup(int othellier[N][N], joueur* X,pion* pion_1){
                     x--;
                     y--;
                     if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                      TabX[nb_choix]=x;
-                      TabY[nb_choix]=y;
-                      nb_choix++;
-                      sortir=1;
+
+                        for(indice = 0; indice<nb_choix ; indice++){ 
+                            if((TabX[indice]==x) && (TabY[indice]==y)){
+                                deja_present = 1;
+                            }
+                        }
+
+                        if(deja_present == 0){ 
+                            printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix+1,x,y);
+                            TabX[nb_choix]=x;
+                            TabY[nb_choix]=y;
+                            nb_choix++;
+                        }
+                        deja_present=0;
+                        sortir=1;
                     }else if(othellier[x][y]==c_pion)
                       sortir=1;
                   }
@@ -309,11 +368,21 @@ void affichage_coup(int othellier[N][N], joueur* X,pion* pion_1){
                  while( sortir != 1 && dans_matrice(x,y)==1){
                     y--;
                     if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                      TabX[nb_choix]=x;
-                      TabY[nb_choix]=y;
-                      nb_choix++;
-                      sortir=1;
+
+                        for(indice = 0; indice<nb_choix ; indice++){ 
+                            if((TabX[indice]==x) && (TabY[indice]==y)){
+                                deja_present = 1;
+                            }
+                        }
+
+                        if(deja_present == 0){ 
+                            printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix+1,x,y);
+                            TabX[nb_choix]=x;
+                            TabY[nb_choix]=y;
+                            nb_choix++;
+                        }
+                        deja_present=0;
+                        sortir=1;
                     }else if(othellier[x][y]==c_pion)
                       sortir=1;
                   }
@@ -327,11 +396,21 @@ void affichage_coup(int othellier[N][N], joueur* X,pion* pion_1){
                     x++;
                     y--;
                     if(othellier[x][y]==0 && dans_matrice(x,y)==1){
-                      printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix,x,y);
-                      TabX[nb_choix]=x;
-                      TabY[nb_choix]=y;
-                      nb_choix++;
-                      sortir=1;
+
+                        for(indice = 0; indice<nb_choix ; indice++){ 
+                            if((TabX[indice]==x) && (TabY[indice]==y)){
+                                deja_present = 1;
+                            }
+                        }
+
+                        if(deja_present == 0){ 
+                            printf("Choix %d : PosX = %d et PosY = %d \n",nb_choix+1,x,y);
+                            TabX[nb_choix]=x;
+                            TabY[nb_choix]=y;
+                            nb_choix++;
+                        }
+                        deja_present=0;
+                        sortir=1;
                     }else if(othellier[x][y]==c_pion)
                       sortir=1;
                   }
@@ -358,16 +437,17 @@ void choix_coup(int othellier[N][N],pion* pion_1,int TabX[],int TabY[],int nb_co
   int choix=0;
 
   do{
+    printf("%d",nb_coup);
     printf("Choississez le numéro du coup à jouer :");
     scanf("%d",&choix);
-    pion_1->PosX=TabX[choix];
-    pion_1->PosY=TabY[choix];
 
-    if(choix<0 || choix>nb_coup+1)
-      printf("Veuillez rentrez un bon numéro \n");
-  }while(choix<0 || choix>nb_coup+1);
+   
+  }while(choix<1 || choix>nb_coup);
 
-  //Compléter la fonction avec SDL pour le choix avec un click de la souris (Plus tard)
+  choix -= 1;
+  pion_1->PosX=TabX[choix];
+  pion_1->PosY=TabY[choix];
+  
 }
 
 
@@ -418,13 +498,13 @@ void retourne(int othellier[N][N],joueur* X, pion* pion_1){
   //Vers la droite
   j=y+1;
 
-  while(dans_matrice(x,j) && othellier[x][j]==c_pion_adv){ //on attend de recontrer un pion adverse
+  while(dans_matrice(x,j) && othellier[x][j]==c_pion_adv){ 
      j++;
   }
-  if(dans_matrice(x,j) && othellier[x][j]==c_pion){  //si le pion est adverse, on vérifie la case suivante
+  if(dans_matrice(x,j) && othellier[x][j]==c_pion){  
     j=y+1;
 
-    while(othellier[x][j]==c_pion_adv){ // on retourne les pions adverses pour les gagner
+    while(othellier[x][j]==c_pion_adv){ 
       othellier[x][j]=c_pion;
       j++;
     }
@@ -433,13 +513,13 @@ void retourne(int othellier[N][N],joueur* X, pion* pion_1){
   //Vers le haut
   i=x-1;
 
-  while(dans_matrice(i,y) && othellier[i][y]==c_pion_adv){ //on attend de recontrer un pion adverse
+  while(dans_matrice(i,y) && othellier[i][y]==c_pion_adv){ 
      i--;
    }
-  if(dans_matrice(i,y) && othellier[i][y]==c_pion){  //si le pion est adverse, on vérifie la case suivante
+  if(dans_matrice(i,y) && othellier[i][y]==c_pion){  
     i=x-1;
 
-    while(othellier[i][y]==c_pion_adv){ // on retourne les pions adverses pour les gagner
+    while(othellier[i][y]==c_pion_adv){ 
       othellier[i][y]=c_pion;
       i--;
     }
@@ -448,13 +528,13 @@ void retourne(int othellier[N][N],joueur* X, pion* pion_1){
   //Vers le bas
   i=x+1;
 
-  while(dans_matrice(i,y) && othellier[i][y]==c_pion_adv){ //on attend de recontrer un pion adverse
+  while(dans_matrice(i,y) && othellier[i][y]==c_pion_adv){ 
      i++;
   }
-  if(dans_matrice(i,y) && othellier[i][y]==c_pion){  //si le pion est adverse, on vérifie la case suivante
+  if(dans_matrice(i,y) && othellier[i][y]==c_pion){  
     i=x+1;
 
-    while(othellier[i][y]==c_pion_adv){ // on retourne les pions adverses pour les gagner
+    while(othellier[i][y]==c_pion_adv){ 
       othellier[i][y]=c_pion;
       i++;
     }
@@ -464,15 +544,15 @@ void retourne(int othellier[N][N],joueur* X, pion* pion_1){
   i=x-1;
   j=y-1;
 
-  while(dans_matrice(i,j) && othellier[i][j]==c_pion_adv){//on attend de recontrer un pion adverse
+  while(dans_matrice(i,j) && othellier[i][j]==c_pion_adv){
     i--;
     j--;
   }
-  if(dans_matrice(i,j) && othellier[i][j]==c_pion){  //si le pion est adverse, on vérifie la case suivante
+  if(dans_matrice(i,j) && othellier[i][j]==c_pion){ 
     i=x-1;
     j=y-1;
 
-    while(othellier[i][j]==c_pion_adv){ // on retourne les pions adverses pour les gagner
+    while(othellier[i][j]==c_pion_adv){ 
       othellier[i][j]=c_pion;
       i--;
       j--;
@@ -483,15 +563,15 @@ void retourne(int othellier[N][N],joueur* X, pion* pion_1){
   i=x-1;
   j=y+1;
 
-  while(dans_matrice(i,j) && othellier[i][j]==c_pion_adv){//on attend de recontrer un pion adverse
+  while(dans_matrice(i,j) && othellier[i][j]==c_pion_adv){
     i--;
     j++;
   }
-  if(dans_matrice(i,j) && othellier[i][j]==c_pion){  //si le pion est adverse, on vérifie la case suivante
+  if(dans_matrice(i,j) && othellier[i][j]==c_pion){ 
     i=x-1;
     j=y+1;
 
-    while(othellier[i][j]==c_pion_adv){ // on retourne les pions adverses pour les gagner
+    while(othellier[i][j]==c_pion_adv){ 
       othellier[i][j]=c_pion;
       i--;
       j++;
@@ -501,15 +581,15 @@ void retourne(int othellier[N][N],joueur* X, pion* pion_1){
   i=x+1;
   j=y-1;
 
-  while(dans_matrice(i,j) && othellier[i][j]==c_pion_adv){//on attend de recontrer un pion adverse
+  while(dans_matrice(i,j) && othellier[i][j]==c_pion_adv){
     i++;
     j--;
   }
-  if(dans_matrice(i,j) && othellier[i][j]==c_pion){  //si le pion est adverse, on vérifie la case suivante
+  if(dans_matrice(i,j) && othellier[i][j]==c_pion){ 
     i=x+1;
     j=y-1;
 
-    while(othellier[i][j]==c_pion_adv){ // on retourne les pions adverses pour les gagner
+    while(othellier[i][j]==c_pion_adv){ 
       othellier[i][j]=c_pion;
       i++;
       j--;
@@ -520,15 +600,15 @@ void retourne(int othellier[N][N],joueur* X, pion* pion_1){
   i=x+1;
   j=y+1;
 
-  while(dans_matrice(i,j) && othellier[i][j]==c_pion_adv){//on attend de recontrer un pion adverse
+  while(dans_matrice(i,j) && othellier[i][j]==c_pion_adv){
     i++;
     j++;
   }
-  if(dans_matrice(i,j) && othellier[i][j]==c_pion){  //si le pion est adverse, on vérifie la case suivante
+  if(dans_matrice(i,j) && othellier[i][j]==c_pion){  
     i=x+1;
     j=y+1;
 
-    while(othellier[i][j]==c_pion_adv){ // on retourne les pions adverses pour les gagner
+    while(othellier[i][j]==c_pion_adv){ 
       othellier[i][j]=c_pion;
       i++;
       j++;
@@ -592,7 +672,7 @@ int peux_jouer(int othellier[N][N], joueur *X){
               }
               sortir=0;
               if(othellier[i+1][j+1]==c_pion_adv && dans_matrice(i+1,j+1)==1){ //diagonale bas droite
-                x = i+1; //x prend les coordonées de la case en cours dont on sait quelle est blanche
+                x = i+1; 
                 y = j+1;
 
                 while( sortir != 1 && dans_matrice(x,y)==1){
